@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_chen_mm_domain_Mission" object="${mission}" path="/missions" z="yylaCWuGZnXLUB+rJjYpbzhcZAs=">
+        <field:display field="userid" id="s_com_chen_mm_domain_Mission_userid" object="${mission}" z="7YD6J37F7FlBBcIafqmCu9M2SkI="/>
+        <field:display date="true" dateTimePattern="${mission_createtime_date_format}" field="createtime" id="s_com_chen_mm_domain_Mission_createtime" object="${mission}" z="LKbyum5XEDk0sSTOVidqN4+IT+A="/>
+        <field:display field="descs" id="s_com_chen_mm_domain_Mission_descs" object="${mission}" z="Hvym/35Y0CuVS6U/eJ9ZGiPGIwM="/>
+        <field:display field="title" id="s_com_chen_mm_domain_Mission_title" object="${mission}" z="lRZ2k1tLoG0iSBuVw+qtuoBGxgM="/>
+    </page:show>
+</div>

@@ -1,0 +1,28 @@
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2013-09-11 14:31:41
+project --topLevelPackage com.chen.mm --projectName MM
+persistence setup --provider HIBERNATE --database MYSQL --databaseName test
+database reverse engineer --schema test  --package ~.domain
+controller all --package ~.web
+logging setup --level INFO --package ALL_SPRING
+security setup
+database reverse engineer --schema test  --package ~.domain
+controller all --package ~.web
+focus --class ~.domain.User
+finder list
+finder add --finderName findUsersByNameAndPasswordEquals
+quit
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2013-09-11 16:06:56
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2013-09-11 16:07:02
+finder add --finderName findAdminsByNameAndPasswordEquals --class ~.domain.Admin
+database reverse engineer --schema test  --package ~.dom
+exit
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2013-09-11 16:31:09
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2013-09-11 16:31:12
+database reverse engineer --schema test  --package ~.domain
+controller all --package ~.web
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2013-09-11 17:37:22
+focus --class ~.domain.Mission
+finder list
+finder add --finderName findMissionsByUserid
+controller all --package ~.web
+web mvc finder add --formBackingType ~.domain.Mission --class ~.web.MissionController

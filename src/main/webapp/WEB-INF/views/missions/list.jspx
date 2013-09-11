@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_chen_mm_domain_Mission" items="${missions}" z="waCDu1efZH2xsOr0kL0BufY2wUA=">
+        <table:table data="${missions}" id="l_com_chen_mm_domain_Mission" path="/missions" z="bGD7DH9jHX7r9k1vp3G3iM7ukEE=">
+            <table:column id="c_com_chen_mm_domain_Mission_userid" property="userid" z="PZ5TMuPGUbSm9XYzdF3t8blbHqk="/>
+            <table:column date="true" dateTimePattern="${mission_createtime_date_format}" id="c_com_chen_mm_domain_Mission_createtime" property="createtime" z="QZlT1StLB1L0TO1dmn/C9KQInVs="/>
+            <table:column id="c_com_chen_mm_domain_Mission_descs" property="descs" z="YUua9CMGFBx3SSxd69TDND550tE="/>
+            <table:column id="c_com_chen_mm_domain_Mission_title" property="title" z="0HW0hJJyVatqp7fu8qpBn9XAEW4="/>
+        </table:table>
+    </page:list>
+</div>
