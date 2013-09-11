@@ -36,4 +36,5 @@
     <beans:bean name="mmAuthenticationProvider"
                 class="com.chen.mm.security.MmAuthenticationProvider">
     </beans:bean>
+
 </beans:beans>
