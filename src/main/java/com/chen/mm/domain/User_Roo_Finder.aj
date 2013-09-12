@@ -18,5 +18,13 @@ privileged aspect User_Roo_Finder {
         q.setParameter("password", password);
         return q;
     }
+
+    public static TypedQuery<User> User.findUsersByName(String name) {
+        if (name == null || name.length() == 0) throw new IllegalArgumentException("The name argument is required");
+        EntityManager em = User.entityManager();
+        TypedQuery<User> q = em.createQuery("SELECT o FROM User AS o WHERE o.name = :name", User.class);
+        q.setParameter("name", name);
+        return q;
+    }
     
 }

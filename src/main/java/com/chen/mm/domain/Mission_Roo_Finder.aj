@@ -5,11 +5,12 @@ package com.chen.mm.domain;
 
 import com.chen.mm.domain.Mission;
 import com.chen.mm.domain.User;
+
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 privileged aspect Mission_Roo_Finder {
-    
+
     public static TypedQuery<Mission> Mission.findMissionsByUserid(User userid) {
         if (userid == null) throw new IllegalArgumentException("The userid argument is required");
         EntityManager em = Mission.entityManager();
@@ -17,5 +18,11 @@ privileged aspect Mission_Roo_Finder {
         q.setParameter("userid", userid);
         return q;
     }
-    
+
+    public static TypedQuery<Mission> Mission.findMissionsByUserName(String username) {
+        if (username == null) throw new IllegalArgumentException("The userid argument is required");
+        User user = User.findUsersByName(username).getSingleResult();
+        return findMissionsByUserid(user);
+    }
+
 }

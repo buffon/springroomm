@@ -26,3 +26,26 @@ finder list
 finder add --finderName findMissionsByUserid
 controller all --package ~.web
 web mvc finder add --formBackingType ~.domain.Mission --class ~.web.MissionController
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2013-09-12 11:40:55
+focus --class ~.domain.User
+// [failed] finder list
+exit
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2013-09-12 11:42:37
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2013-09-12 11:42:41
+focus --class ~.domain.User
+// [failed] finder list
+// [failed] finder add --finderName findUsersByName
+exit
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2013-09-12 11:43:59
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2013-09-12 11:44:02
+// [failed] finder add --finderName findUsersByName --class ~.domain.User
+// [failed] finder add --finderName findUsersByName --class ~.domain.User
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2013-09-12 12:24:19
+focus --class ~.domain.User
+// [failed] finder list
+// [failed] finder list --filter name
+focus --class ~.domain.User
+// [failed] finder list --filter name
+// [failed] finder list
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2013-09-12 12:30:08
+hint

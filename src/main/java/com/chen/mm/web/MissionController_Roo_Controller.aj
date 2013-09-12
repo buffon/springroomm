@@ -5,12 +5,16 @@ package com.chen.mm.web;
 
 import com.chen.mm.domain.Mission;
 import com.chen.mm.domain.User;
-import com.chen.mm.web.MissionController;
+
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.joda.time.format.DateTimeFormat;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,21 +25,17 @@ import org.springframework.web.util.UriUtils;
 import org.springframework.web.util.WebUtils;
 
 privileged aspect MissionController_Roo_Controller {
-    
-    @RequestMapping(method = RequestMethod.POST, produces = "text/html")
-    public String MissionController.create(@Valid Mission mission, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
-        if (bindingResult.hasErrors()) {
-            populateEditForm(uiModel, mission);
-            return "missions/create";
-        }
-        uiModel.asMap().clear();
-        mission.persist();
-        return "redirect:/missions/" + encodeUrlPathSegment(mission.getId().toString(), httpServletRequest);
-    }
-    
+
     @RequestMapping(params = "form", produces = "text/html")
     public String MissionController.createForm(Model uiModel) {
         populateEditForm(uiModel, new Mission());
+        return "missions/create";
+    }
+
+    @RequestMapping(params = "formUser", produces = "text/html")
+    public String MissionController.createFormUser(Model uiModel, HttpServletRequest httpServletRequest) {
+        System.out.println("formUser======");
+        populateEditFormUser(uiModel, new Mission(), httpServletRequest);
         return "missions/create";
     }
     
@@ -61,6 +61,21 @@ privileged aspect MissionController_Roo_Controller {
         addDateTimeFormatPatterns(uiModel);
         return "missions/list";
     }
+
+//    @RequestMapping(produces = "text/html")
+//    public String MissionController.listUser(@RequestParam(value = "pageUser", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
+//        if (page != null || size != null) {
+//            int sizeNo = size == null ? 10 : size.intValue();
+//            final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
+//            uiModel.addAttribute("missions", Mission.findMissionEntries(firstResult, sizeNo));
+//            float nrOfPages = (float) Mission.countMissions() / sizeNo;
+//            uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
+//        } else {
+//            uiModel.addAttribute("missions", Mission.findAllMissions());
+//        }
+//        addDateTimeFormatPatterns(uiModel);
+//        return "missions/list";
+//    }
     
     @RequestMapping(method = RequestMethod.PUT, produces = "text/html")
     public String MissionController.update(@Valid Mission mission, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
@@ -97,6 +112,15 @@ privileged aspect MissionController_Roo_Controller {
         uiModel.addAttribute("mission", mission);
         addDateTimeFormatPatterns(uiModel);
         uiModel.addAttribute("users", User.findAllUsers());
+    }
+
+    void MissionController.populateEditFormUser(Model uiModel, Mission mission,HttpServletRequest httpServletRequest) {
+        uiModel.addAttribute("mission", mission);
+        addDateTimeFormatPatterns(uiModel);
+
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        List<User> users = User.findUsersByName(userDetails.getUsername()).getResultList();
+        uiModel.addAttribute("users", users);
     }
     
     String MissionController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {
